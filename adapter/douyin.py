@@ -65,8 +65,6 @@ def connect_douyin_live_room():
     live_url = 'https://live.douyin.com/567789235524'
     # 获取直播间socket url
     wss_url, ttwid = douyin_util.fetch_live_room_wss_url(live_url)
-    logger.info(f'wss_url：{wss_url}')
-    logger.info(f'ttwid：{ttwid}')
     # 创建socket连接
     websocket = Websocket(wss_url)
     # 注册连接事件
