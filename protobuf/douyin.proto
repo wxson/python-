@@ -1,0 +1,73 @@
+syntax = 'proto3';
+
+package test;
+
+import "google/protobuf/timestamp.proto";
+
+message PushHeader {
+    string key = 1;
+    string value = 2;
+}
+
+message PushFrame {
+    uint64 SeqID = 1;
+    uint64 LogID = 2;
+    int32 service = 3;
+    int32 method = 4;
+    repeated PushHeader headers = 5;
+    string payload_encoding = 6;
+    string payload_type = 7;
+    bytes payload = 8;
+    string LodIDNew = 9;
+}
+
+message Message {
+    string method = 1;
+    bytes payload = 2;
+    uint64 msg_id = 3;
+    int32 msg_type = 4;
+    uint64 offset = 5;
+    bool need_wrds_store = 6;
+    uint64 wrds_version = 7;
+    string wrds_sub_key = 8;
+}
+
+message Response {
+    repeated Message messages = 1;
+    string cursor = 2;
+    uint64 fetch_interval = 3;
+    uint64 now = 4;
+    string internal_ext = 5;
+    int32 fetch_type = 6;
+    map<string, string> route_params = 7;
+    uint64 heartbeat_duration = 8;
+    bool need_ack = 9;
+    string push_server = 10;
+    string live_cursor = 11;
+    bool history_no_more = 12;
+    string proxy_server = 13;
+}
+
+message ChatMessage {
+    User user = 2;
+    string content = 3;
+    bool visible_to_sender = 4;
+    google.protobuf.Timestamp event_time = 5;
+}
+
+message GiftMessage {
+    User user = 7;
+    GiftStruct gif = 15;
+}
+
+message User {
+    uint64 id = 4;
+    uint64 shortId = 2;
+    string nickName = 3;
+}
+
+message GiftStruct {
+    string describe = 2;
+    uint64 id = 5;
+    string name = 16;
+}
